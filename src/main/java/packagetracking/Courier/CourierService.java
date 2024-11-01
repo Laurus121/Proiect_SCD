@@ -6,6 +6,7 @@ import packagetracking.pkg.Package;
 import packagetracking.pkg.PackageRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourierService {
@@ -39,8 +40,9 @@ public class CourierService {
             if (updatedcourier.getEmail() != null) {
                 existingCourier.setEmail(updatedcourier.getEmail());
             }
-            if (updatedcourier.getManager_id() != null) {
-                existingCourier.setManager_id(updatedcourier.getManager_id());
+            if (updatedcourier.getManager() != null && updatedcourier.getManager().getId() != null) {
+                Optional<Courier> manager = courierRepository.findById(Long.valueOf(updatedcourier.getManager().getId()));
+                manager.ifPresent(existingCourier::setManager);
             }
             return courierRepository.save(existingCourier);
         }).orElse(null);
@@ -55,4 +57,7 @@ public class CourierService {
     }
 
 
+    public List<Courier> getAllCouriersWithoutPendingPackages() {
+        return courierRepository.findCouriersWithoutPendingPackages();
+    }
 }

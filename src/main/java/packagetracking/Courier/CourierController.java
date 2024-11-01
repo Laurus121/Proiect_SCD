@@ -26,9 +26,10 @@ public class CourierController {
     public Courier getCourierById(@PathVariable Long id) {
         return courierService.findById(id);
     }
+
     @PutMapping("/courier/{id}")
     public Courier update(@PathVariable Long id, @RequestBody Courier updatedcourier) {
-        return courierService.update(id,updatedcourier);
+        return courierService.update(id, updatedcourier);
     }
 
     @DeleteMapping("/courier/{id}")
@@ -41,4 +42,8 @@ public class CourierController {
         return courierService.getPackagesForCourier(id);
     }
 
+    @GetMapping("/couriers/withoutPendingPackages")
+    public List<Courier> getAllCouriersWithoutPendingPackages() {
+        return courierService.getAllCouriersWithoutPendingPackages();
+    }
 }

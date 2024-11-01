@@ -2,6 +2,8 @@ package packagetracking.Courier;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -11,5 +13,8 @@ public class Courier {
     private Integer id;
     private String name;
     private String email;
-    private Integer manager_id;
+
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private Courier manager;
 }
