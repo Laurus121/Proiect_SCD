@@ -42,8 +42,12 @@ public class CourierController {
         return courierService.getPackagesForCourier(id);
     }
 
-    @GetMapping("/couriers/withoutPendingPackages")
+    @GetMapping("/couriers/without-pending-packages")
     public List<Courier> getAllCouriersWithoutPendingPackages() {
         return courierService.getAllCouriersWithoutPendingPackages();
+    }
+    @GetMapping("/couriers/managers-delivered")
+    public List<ManagerDeliveredStats> getManagersAndDeliveredStats() {
+        return courierService.getManagersAndDeliveredNumber();
     }
 }

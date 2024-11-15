@@ -60,4 +60,12 @@ public class CourierService {
     public List<Courier> getAllCouriersWithoutPendingPackages() {
         return courierRepository.findCouriersWithoutPendingPackages();
     }
+
+    public List<ManagerDeliveredStats> getManagersAndDeliveredNumber() {
+        List<Object[]> results = courierRepository.findManagersAndDeliveredNumber();
+        return results.stream()
+                .map(result -> new ManagerDeliveredStats((String) result[0], ((Number) result[1]).intValue()))
+                .toList();
+    }
+
 }
