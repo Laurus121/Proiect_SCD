@@ -12,11 +12,13 @@ namespace WinFormsApp1
     {
         public int id { get; set; }
         public string name { get; set; }
+
+        public string email { get; set; }
     }
     internal class ManagerStats
     {
-        public string ManagerName { get; set; }
-        public int DeliveredCount { get; set; }
+        public string managerName { get; set; }
+        public int deliveredCount { get; set; }
     }
 
 }

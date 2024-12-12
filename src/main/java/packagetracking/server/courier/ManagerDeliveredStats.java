@@ -1,4 +1,4 @@
-package packagetracking.Courier;
+package packagetracking.server.courier;
 
 public class ManagerDeliveredStats {
     private String managerName;

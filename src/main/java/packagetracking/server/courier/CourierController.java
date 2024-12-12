@@ -1,11 +1,12 @@
-package packagetracking.Courier;
+package packagetracking.server.courier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import packagetracking.pkg.Package;
+import packagetracking.server.pkg.Package;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 public class CourierController {
 
@@ -28,8 +29,8 @@ public class CourierController {
     }
 
     @PutMapping("/courier/{id}")
-    public Courier update(@PathVariable Long id, @RequestBody Courier updatedcourier) {
-        return courierService.update(id, updatedcourier);
+    public Courier update(@PathVariable Long id, @RequestBody Courier updatedCourier) {
+        return courierService.update(id, updatedCourier);
     }
 
     @DeleteMapping("/courier/{id}")
@@ -46,6 +47,7 @@ public class CourierController {
     public List<Courier> getAllCouriersWithoutPendingPackages() {
         return courierService.getAllCouriersWithoutPendingPackages();
     }
+
     @GetMapping("/couriers/managers-delivered")
     public List<ManagerDeliveredStats> getManagersAndDeliveredStats() {
         return courierService.getManagersAndDeliveredNumber();

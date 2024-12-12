@@ -1,6 +1,10 @@
-﻿using System.Net.Http.Headers;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
@@ -37,6 +41,7 @@ namespace WinFormsApp1
             List<Package> packages = this.GetPackages();
             return packages.Select(p => p.courier).DistinctBy(c => c.name).ToList();
         }
+
         public List<Courier> GetCouriersWithoutPendingPackages()
         {
             List<Courier> couriers = null;
@@ -48,7 +53,17 @@ namespace WinFormsApp1
             }
             return couriers;
         }
-
+        public List<Courier> GetCouriers()
+        {
+            List<Courier> couriers = null;
+            HttpResponseMessage response = client.GetAsync("courier").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string resultString = response.Content.ReadAsStringAsync().Result;
+                couriers = JsonSerializer.Deserialize<List<Courier>>(resultString);
+            }
+            return couriers;
+        }
         public List<ManagerStats> GetManagersAndDeliveredNumbers()
         {
             List<ManagerStats> managers = null;
@@ -60,20 +75,34 @@ namespace WinFormsApp1
             }
             return managers;
         }
-
-        public bool SendEmail(List<string> emails, string subject, string body)
+        public async Task<bool> SendEmailAsync(List<string> emails, string subject, string body, string email, string password)
         {
-            var emailData = new
+            try
             {
-                Emails = emails,
-                Subject = subject,
-                Body = body
-            };
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com"))
+                {
+                    smtpClient.Port = 587;
+                    smtpClient.Credentials = new NetworkCredential(email, password);
+                    smtpClient.EnableSsl = true;
 
-            var jsonContent = new StringContent(JsonSerializer.Serialize(emailData), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = client.PostAsync("email/send", jsonContent).Result;
+                    foreach (var emailRecipient in emails)
+                    {
+                        MailMessage mailMessage = new MailMessage();
+                        mailMessage.From = new MailAddress(email);
+                        mailMessage.To.Add(emailRecipient);
+                        mailMessage.Subject = subject;
+                        mailMessage.Body = body;
 
-            return response.IsSuccessStatusCode;
+                        await smtpClient.SendMailAsync(mailMessage);
+                    }
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
+
     }
 }

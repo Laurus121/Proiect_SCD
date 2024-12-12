@@ -28,7 +28,7 @@ A distributed application for tracking package deliveries.
 - [Get, Post, Put/Patch, Delete](https://restfulapi.net/http-methods/)
 
 - [SQL](https://www.w3schools.com/sql/sql_intro.asp) / [CRUD operations](https://www.freecodecamp.org/news/crud-operations-explained/)
-- [ORM](https://www.baeldung.com/cs/object-relational-mapping), [JDBC, JPA] (https://www.baeldung.com/jpa-vs-jdbc), Hibernate, SpringDataJPA
+- [ORM](https://www.baeldung.com/cs/object-relational-mapping), [Hibernate](https://medium.com/javarevisited/jpa-vs-hibernate-what-is-the-difference-between-them-0b7f49ad488f), [JDBC, JPA] (https://www.baeldung.com/jpa-vs-jdbc), SpringDataJPA
 
 - optional: [Docker](https://www.simplilearn.com/tutorials/docker-tutorial/getting-started-with-docker)
 </details>
@@ -50,8 +50,27 @@ Check installation in cmd:
 Other tools and libraries:
 - spring project initializer: https://start.spring.io/
 - [lombok](https://www.baeldung.com/intro-to-project-lombok)
+- [vue](https://www.baeldung.com/spring-boot-vue-js)
 - optional: [Docker](https://spring.io/guides/gs/spring-boot-docker)
 </details>
+<br>
+
+<details>
+  <summary style="font-size: 1.25em;"><b>Frontend setup: vue+vuetify</b></summary>
+
+1. check - backend ready
+2. create `config/WebConfig.java` with given contents
+3. in cmd: `npm install -g @vue/cli`
+4. in cmd: `vue create packagetracking-frontend` -> select vue3, yarn (or npm)
+5. in cmd: `cd packagetracking-frontend` ; `yarn add axios` (or `npm init -y` ; `npm install axios`)
+6. in cmd: `vue add vuetify`, select Vuetify 3 - Vue CLI (preview)
+7. add a .vue component, import it in app.vue
+8. add `{"vue/multi-word-component-names": "off"}` to `eslintConfig.rules` in `package.json`
+9. run backend, then in cmd: `yarn run serve` (or `npm run serve`)
+
+Check the <a href="https://vuetifyjs.com/en/components/explorer/">Vue components documentation</a>!
+</details>
+<br>
 
 ### Project requirements
 - Database:

@@ -33,7 +33,11 @@
             button1 = new Button();
             label2 = new Label();
             comboBox2 = new ComboBox();
-            button2 = new Button();
+            label3 = new Label();
+            label_numarpachete = new Label();
+            comboBox3 = new ComboBox();
+            label4 = new Label();
+            buttonOpenEmailForm = new Button();
             SuspendLayout();
             // 
             // comboBox1
@@ -56,7 +60,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(375, 51);
+            button1.Location = new Point(255, 290);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(161, 22);
@@ -83,23 +87,62 @@
             comboBox2.Size = new Size(133, 23);
             comboBox2.TabIndex = 4;
             // 
-            // button2
+            // label3
             // 
-            button2.Location = new Point(375, 96);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(161, 22);
-            button2.TabIndex = 5;
-            button2.Text = "load";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 138);
+            label3.Name = "label3";
+            label3.Size = new Size(259, 15);
+            label3.TabIndex = 6;
+            label3.Text = "Get all managers and their number of packages:";
+            // 
+            // label_numarpachete
+            // 
+            label_numarpachete.AutoSize = true;
+            label_numarpachete.Location = new Point(347, 162);
+            label_numarpachete.Name = "label_numarpachete";
+            label_numarpachete.Size = new Size(0, 15);
+            label_numarpachete.TabIndex = 9;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(65, 159);
+            comboBox3.Margin = new Padding(3, 2, 3, 2);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(133, 23);
+            comboBox3.TabIndex = 11;
+            comboBox3.SelectedIndexChanged += ComboBox3_SelectedIndexChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(221, 162);
+            label4.Name = "label4";
+            label4.Size = new Size(120, 15);
+            label4.TabIndex = 12;
+            label4.Text = "Number of packages:";
+            // 
+            // buttonOpenEmailForm
+            // 
+            buttonOpenEmailForm.Location = new Point(452, 289);
+            buttonOpenEmailForm.Name = "buttonOpenEmailForm";
+            buttonOpenEmailForm.Size = new Size(139, 23);
+            buttonOpenEmailForm.TabIndex = 13;
+            buttonOpenEmailForm.Text = "Send E-mail";
+            buttonOpenEmailForm.UseVisualStyleBackColor = true;
+            buttonOpenEmailForm.Click += buttonOpenEmailForm_Click;
             // 
             // Form1
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
-            Controls.Add(button2);
+            Controls.Add(buttonOpenEmailForm);
+            Controls.Add(label4);
+            Controls.Add(comboBox3);
+            Controls.Add(label_numarpachete);
+            Controls.Add(label3);
             Controls.Add(comboBox2);
             Controls.Add(label2);
             Controls.Add(button1);
@@ -119,6 +162,10 @@
         private Button button1;
         private Label label2;
         private ComboBox comboBox2;
-        private Button button2;
+        private Label label3;
+        private Label label_numarpachete;
+        private ComboBox comboBox3;
+        private Label label4;
+        private Button buttonOpenEmailForm;
     }
 }

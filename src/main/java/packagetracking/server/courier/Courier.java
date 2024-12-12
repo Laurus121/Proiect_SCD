@@ -1,4 +1,4 @@
-package packagetracking.Courier;
+package packagetracking.server.courier;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
